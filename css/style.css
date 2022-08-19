@@ -1,0 +1,274 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.container {
+  margin: 20px auto;
+  width: 90%;
+}
+.row {
+  display: flex;
+}
+hr {
+  border: 1px solid #eee;
+}
+.gameInfo {
+  display: flex;
+}
+
+.gameInfo .gameName {
+  flex: 1;
+}
+.gameInfo .category {
+  flex: 1;
+  text-align: right;
+}
+.gameInfo .category span {
+  text-transform: capitalize;
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.hangmanDraw {
+  flex: 1;
+  background-color: #f8f8f8;
+  padding: 20px;
+  height: 324px;
+}
+
+.hangmanDraw .theDraw {
+  width: 60px;
+  height: 280px;
+  border-bottom: 4px solid #222;
+  position: relative;
+  margin: auto;
+  left: -80px;
+  display: none;
+}
+.hangmanDraw .theDraw .stand {
+  content: "";
+  position: absolute;
+  width: 4px;
+  background-color: #222;
+  height: 100%;
+  left: 50%;
+  margin-left: -2px;
+  display: none;
+}
+.hangmanDraw .theDraw .hang {
+  display: none;
+}
+
+.hangmanDraw .theDraw .hang::before {
+  content: "";
+  position: absolute;
+  height: 4px;
+  background-color: #222;
+  width: 100px;
+  left: 30px;
+  top: 15px;
+}
+.hangmanDraw .theDraw .hang::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 30px;
+  background-color: #222;
+  left: 130px;
+  top: 15px;
+}
+.hangmanDraw .theDraw .rope {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  left: 95px;
+  top: 45px;
+  border: 4px dashed #222;
+  display: none;
+}
+.hangmanDraw .theDraw .man .head {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid #222;
+  position: absolute;
+  left: 105px;
+  top: 55px;
+  display: none;
+}
+.hangmanDraw .theDraw .man .body {
+  position: absolute;
+  background-color: #222;
+  width: 4px;
+  height: 110px;
+  top: 102px;
+  left: 130px;
+  display: none;
+}
+
+.hangmanDraw .theDraw .man .hands::before {
+  left: 85px;
+  transform: rotate(30deg);
+}
+
+.hangmanDraw .theDraw .man .hands::after {
+  left: 130px;
+  transform: rotate(-30deg);
+}
+.hangmanDraw .theDraw .man .hands::before,
+.hangmanDraw .theDraw .man .hands::after {
+  content: "";
+  top: 140px;
+  width: 50px;
+  position: absolute;
+  height: 4px;
+  background-color: #222;
+}
+
+.hangmanDraw .theDraw .man .legs::before {
+  left: 85px;
+  transform: rotate(-30deg);
+}
+
+.hangmanDraw .theDraw .man .legs::after {
+  left: 130px;
+  transform: rotate(30deg);
+}
+.hangmanDraw .theDraw .man .legs::before,
+.hangmanDraw .theDraw .man .legs::after {
+  content: "";
+  top: 220px;
+  width: 50px;
+  position: absolute;
+  height: 4px;
+  background-color: #222;
+}
+.hangmanDraw .theDraw .man .hands {
+  display: none;
+}
+.hangmanDraw .theDraw .man .legs {
+  display: none;
+}
+.letters {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+}
+.letters .letterBox {
+  width: 55px;
+  height: 55px;
+  display: inline-block;
+  background-color: #009688;
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+  margin-right: 10px;
+  line-height: 55px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.letterGuess {
+  margin: 10px auto;
+  background-color: #f8f8f8;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  min-height: 104px;
+}
+.letterGuess span {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 60px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #fdfdfd;
+  border-bottom: 2px solid #222;
+}
+.letterGuess span.withSpace {
+  background: none;
+  border-bottom: none;
+  position: relative;
+}
+
+.letterGuess span.withSpace::before {
+  content: "";
+  width: 20px;
+  height: 4px;
+  background-color: #222;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.letters.finished {
+  pointer-events: none;
+}
+
+.letters .letterBox.clicked {
+  background-color: #222;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.hangmanDraw.wrong-1 .theDraw {
+  display: block;
+}
+
+.hangmanDraw.wrong-2 .stand {
+  display: block;
+}
+
+.hangmanDraw.wrong-3 .hang {
+  display: block;
+}
+.hangmanDraw.wrong-4 .rope {
+  display: block;
+}
+.hangmanDraw.wrong-5 .theDraw .man .head {
+  display: block;
+}
+.hangmanDraw.wrong-6 .theDraw .man .body {
+  display: block;
+}
+.hangmanDraw.wrong-7 .theDraw .man .hands {
+  display: block;
+}
+.hangmanDraw.wrong-8 .theDraw .man .legs {
+  display: block;
+}
+
+.popup {
+  position: fixed;
+  background-color: #e91e63;
+  padding: 100px 20px;
+  width: 80%;
+  top: 30%;
+  left: 10%;
+  text-align: center;
+  font-size: 40px;
+  border-radius: 1px solid #ccc;
+  color: #fff;
+}
+.successPopup {
+  position: fixed;
+  background-color: #009688;
+  padding: 100px 20px;
+  width: 80%;
+  top: 30%;
+  left: 10%;
+  text-align: center;
+  font-size: 40px;
+  border-radius: 1px solid #ccc;
+  color: #fff;
+}
